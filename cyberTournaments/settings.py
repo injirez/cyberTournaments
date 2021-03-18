@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'testt'
+    'django.urls',
+    'Dota',
 ]
 
 MIDDLEWARE = [
@@ -86,11 +87,11 @@ WSGI_APPLICATION = 'cyberTournaments.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tournamentdb',
+        'NAME': 'tournamentsdb',
         'HOST': 'localhost',
         'USER': 'rodionibragimov',
-        'PASSWORD': 'password',
-        'PORT': '5433'
+        'PASSWORD': '3470',
+        'PORT': '5432'
     }
 }
 
