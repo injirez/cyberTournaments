@@ -2,16 +2,21 @@ import psycopg2
 from datetime import datetime
 
 con = psycopg2.connect(
-					host = 'localhost',
-					database = 'tournamentsdb',
-					port = '5432',
-					user = 'rodionibragimov',
-					password = '3470')
+    host='localhost',
+    database='cybertournaments',
+    port='5432',
+    user='rodionibragimov',
+    password='3470')
 cur = con.cursor()
 
-cur.execute('insert into testt_dota (id, "tournamentTitle", "tournamentType", "tournamentDate") values (%s, %s, %s, %s)', (0, 'Test', 'Test', 'datetime.now()'))
+def addData(title, status, startTime, gameMode, participant, reward, siteName, link, img):
+    cur.execute(
+        'insert into "Dota_dota" ("title", "status", "startTime", "gameMode", "participant", "reward", "siteName", "link", "dateTime", "img") values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+        (title, status, startTime, gameMode, participant, reward,
+         siteName, link,
+         datetime.now(), img))
 
-con.commit()
+    con.commit()
 
-cur.close()
-con.close()
+    cur.close()
+    con.close()
