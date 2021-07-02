@@ -89,9 +89,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cybertournaments',
         'HOST': 'localhost',
-        'USER': 'rodionibragimov',
+        'USER': 'postgres',
         'PASSWORD': '3470',
-        'PORT': '5432'
+        'PORT': '5432',
+        'OPTIONS': {
+            'client_encoding': 'win1251'
+        }
     }
 }
 
@@ -133,3 +136,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    #this bit makes the magic.
+    'DEFAULT_RENDERER_CLASSES': (
+         #UnicodeJSONRenderer has an ensure_ascii = False attribute,
+         #thus it will not escape characters.
+        'rest_framework.renderers.UnicodeJSONRenderer',
+         #You only need to keep this one if you're using the browsable API
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
+}

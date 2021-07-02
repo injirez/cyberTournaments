@@ -15,8 +15,9 @@ con = psycopg2.connect(
     host='localhost',
     database='cybertournaments',
     port='5432',
-    user='rodionibragimov',
+    user='postgres',
     password='3470')
+con.set_client_encoding('win1251')
 cur = con.cursor()
 
 class WePlay:
