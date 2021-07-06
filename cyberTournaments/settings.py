@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+
 # import sys, os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +31,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.urls',
-    'Dota',
+    'rest_framework',
+    'drf_yasg',
+    'Dota'
+
 ]
 
 MIDDLEWARE = [
@@ -74,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cyberTournaments.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -98,7 +100,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -117,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -131,19 +131,18 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
 
-REST_FRAMEWORK = {
-    #this bit makes the magic.
-    'DEFAULT_RENDERER_CLASSES': (
-         #UnicodeJSONRenderer has an ensure_ascii = False attribute,
-         #thus it will not escape characters.
-        'rest_framework.renderers.UnicodeJSONRenderer',
-         #You only need to keep this one if you're using the browsable API
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    )
-}
+# REST_FRAMEWORK = {
+#     #this bit makes the magic.
+#     'DEFAULT_RENDERER_CLASSES': (
+#          #UnicodeJSONRenderer has an ensure_ascii = False attribute,
+#          #thus it will not escape characters.
+#         'rest_framework.renderers.UnicodeJSONRenderer',
+#          #You only need to keep this one if you're using the browsable API
+#         'rest_framework.renderers.BrowsableAPIRenderer',
+#     )
+# }
