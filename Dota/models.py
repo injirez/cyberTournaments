@@ -11,5 +11,5 @@ class Dota(models.Model):
     reward = models.TextField('Tournament reward')
     siteName = models.TextField('Name of site')
     link = models.URLField('URL of tournament', max_length=200)
-    dateTime = models.DateTimeField('dateTime')
+    ip = models.CharField('IP address', max_length=15)
 
