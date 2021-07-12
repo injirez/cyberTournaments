@@ -39,9 +39,15 @@ def addDota():
         reward = bot.find_element_by_xpath(
             "//*[@id='app']/div/main/div[1]/div/div/div/div[2]/table/tbody/tr[{}]/td[6]/p".format(i)).text
         siteName = title.split()
-        # rewardCount = reward.replace('$', '')
-        # reward = reward.split()
-        # reward = '$ ' + reward[1]
+
+        if reward == 'Уважение':
+            reward = 0
+            currency = 0
+        elif reward != 'Уважение':
+            reward = reward.split()
+            reward = reward[0].replace('$', '')
+            currency = '$'
+
 
         link = bot.find_element_by_xpath(
             "//*[@id='app']/div/main/div[1]/div/div/div/div[2]/table/tbody/tr[{}]/td[1]/div/div/a".format(
@@ -49,8 +55,8 @@ def addDota():
 
 
 
-        newObject = Dota.objects.create(title=title, status=status, startTime=startTime, gameMode=gameMode, participant=participant, reward=reward, siteName=siteName[0], link=link, img=image, ip='127.0.0.1')
-        print(title, status, startTime, gameMode, participant, reward, siteName[0], link, image)
+        newObject = Dota.objects.create(title=title, status=status, startTime=startTime, gameMode=gameMode, participant=participant, reward=reward, siteName=siteName[0], Tournlink=link, img=image, ip='127.0.0.1', currency=currency)
+        # print(title, status, startTime, gameMode, participant, reward, siteName[0], link, image)
     bot.quit()
     return True
 

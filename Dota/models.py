@@ -10,6 +10,7 @@ class Dota(models.Model):
     participant = models.TextField('Number of participants')
     reward = models.TextField('Tournament reward')
     siteName = models.TextField('Name of site')
-    link = models.URLField('URL of tournament', max_length=200)
+    Tournlink = models.URLField('URL of tournament', max_length=200)
+    currency = models.CharField('Currence of reward', max_length=5, blank=True, null=True)
     ip = models.CharField('IP address', max_length=15)
 
