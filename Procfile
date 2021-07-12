@@ -1,1 +1,1 @@
-web gunicorn cyberTournaments.wsgi:apllication --log-file -
+web gunicorn cyberTournaments.wsgi:application --log-file -
