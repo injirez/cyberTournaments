@@ -29,7 +29,7 @@ SECRET_KEY = '2qba_+8k*m9gjhft7&+=un!sid#b@vd*2#xv1s0k^yw26i4134'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.8']
 
 # Application definition
 
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.urls',
     'rest_framework',
     'drf_yasg',
+    'django_celery_beat',
+    'django_celery_results',
     'Dota'
 
 ]
@@ -77,15 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cyberTournaments.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -146,3 +139,9 @@ STATIC_URL = '/static/'
 #         'rest_framework.renderers.BrowsableAPIRenderer',
 #     )
 # }
+
+# Celery Configuration Options
+CELERY_TIMEZONE = "Europe/Moscow"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_BROKER_URL = 'redis://localhost:6379/0'

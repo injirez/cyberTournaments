@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from addData import addData
+# from addData import addData
 import psycopg2
 from datetime import datetime
 
@@ -53,21 +53,20 @@ class WePlay:
             reward = bot.find_element_by_xpath(
                 "//*[@id='app']/div/main/div[1]/div/div/div/div[2]/table/tbody/tr[{}]/td[6]/p".format(i)).text
             siteName = title.split()
-            rewardCount = reward.replace('$', '')
-            reward = reward.split()
-            reward = '$ ' + reward[1]
+            # rewardCount = reward.replace('$', '')
+            # reward = reward.split()
+            # reward = '$ ' + reward[1]
 
             link = bot.find_element_by_xpath(
                 "//*[@id='app']/div/main/div[1]/div/div/div/div[2]/table/tbody/tr[{}]/td[1]/div/div/a".format(
                     i)).get_attribute('href')
-            print(title, status, startTime, gameMode, participant, rewardCount, reward, siteName[0], link, image)
+            print(title, status, startTime, gameMode, participant, reward, siteName[0], link, image)
             # addData(title, status, startTime, gameMode, participant, reward, siteName[0], link, image)
             # time.sleep(30)
             cur.execute(
-                'insert into "Dota_dota" ("title", "status", "startTime", "gameMode", "participant", "reward", "siteName", "link", "dateTime", "img") values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+                'insert into "Dota_dota" ("title", "status", "startTime", "gameMode", "participant", "reward", "siteName", "link", "img", "ip") values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
                 (title, status, startTime, gameMode, participant, reward,
-                 siteName[0], link,
-                 datetime.now(), image))
+                 siteName[0], link, image, '127.0.0.1'))
 
             con.commit()
 
