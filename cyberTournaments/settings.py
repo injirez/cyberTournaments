@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
+import dj_database_url
 
 # import sys, os
 
@@ -29,7 +31,7 @@ SECRET_KEY = '2qba_+8k*m9gjhft7&+=un!sid#b@vd*2#xv1s0k^yw26i4134'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.8']
+ALLOWED_HOSTS = ['192.168.0.8', '*']
 
 # Application definition
 
@@ -128,6 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+django_heroku.setting(locals())
 
 # REST_FRAMEWORK = {
 #     #this bit makes the magic.

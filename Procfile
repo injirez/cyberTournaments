@@ -1,0 +1,1 @@
+web gunicorn cyberTournaments.wsgi:apllication --log-file -
