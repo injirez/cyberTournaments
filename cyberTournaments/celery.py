@@ -20,6 +20,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'addDota': {
         'task': 'Dota.tasks.addDota',
-        'schedule': 300.0
+        'schedule': 30.0
     }
 }

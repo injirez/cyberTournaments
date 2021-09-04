@@ -1,5 +1,5 @@
 from celery import shared_task
-from .models import Dota
+from .models import Dota, Reward, GameMode, SiteName, Link
 
 import time
 from selenium import webdriver
@@ -43,10 +43,13 @@ def addDota():
         if reward == 'Уважение':
             reward = 0
             currency = 0
+            typeReward = 0
         elif reward != 'Уважение':
             reward = reward.split()
+            typeReward = (reward[1] + ' ' + reward[2]).replace('(', '').replace(')', '')
             reward = reward[0].replace('$', '')
             currency = '$'
+
 
 
         link = bot.find_element_by_xpath(
@@ -55,8 +58,14 @@ def addDota():
 
 
 
-        newObject = Dota.objects.create(title=title, status=status, startTime=startTime, gameMode=gameMode, participant=participant, reward=reward, siteName=siteName[0], Tournlink=link, img=image, ip='127.0.0.1', currency=currency)
-        # print(title, status, startTime, gameMode, participant, reward, siteName[0], link, image)
+        print(title, status, startTime, gameMode, participant, reward, siteName[0], link, image, currency, typeReward)
+
+        rewardObject = Reward.objects.create(type=typeReward, count=reward, currency=currency)
+        gameModeObject = GameMode.objects.create(mode=gameMode)
+        siteNameObject = SiteName.objects.create(name=siteName[0])
+        linkObject = Link.objects.create(image=image, tournament=link)
+        newObject = Dota.objects.create(title=title, status=status, startTime=startTime, gameMode=gameModeObject, participant=participant, reward=rewardObject, siteName=siteNameObject, links=linkObject, ip='127.0.0.1')
+
     bot.quit()
     return True
 
