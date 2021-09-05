@@ -18,7 +18,7 @@ class Reward(models.Model):
     currency = models.CharField('Currency of reward', max_length=3)
 
 class GameMode(models.Model):
-    mode = models.CharField('Mode of the game', max_length=10)
+    mode = models.CharField('Mode of the game', max_length=10, unique=True)
 
 class SiteName(models.Model):
     name = models.CharField('Name of the site', max_length=10, unique=True)

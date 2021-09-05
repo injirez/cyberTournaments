@@ -21,13 +21,17 @@ class DotaListSerializer(serializers.ModelSerializer):
         model = Dota
         fields = ('title', 'status', 'startTime', 'gameMode', 'participant', 'reward', 'siteName', 'links', 'ip')
 
-
-#
-class CreateParticipantSerializer(serializers.ModelSerializer):
+class DotaTestListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dota
-        # fields = ("title", "img", "status", "startTime", "gameMode", "participant", "reward", "siteName", "link")
-        fields = ("title", "participant")
+        fields = '__all__'
+
+# #
+# class CreateParticipantSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Dota
+#         # fields = ("title", "img", "status", "startTime", "gameMode", "participant", "reward", "siteName", "link")
+#         fields = ("title", "participant")
 
     # def create(self, validated_data):
     #     participantNum = Dota.objects.update_or_create(

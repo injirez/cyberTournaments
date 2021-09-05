@@ -60,11 +60,12 @@ def addDota():
 
 
         print(title, status, startTime, gameMode, participant, reward, siteName[0], link, image, currency, typeReward)
-        siteNameObject = SiteName.objects.get(id=76)
+        siteNameObject = SiteName.objects.get(name='WePlay')
+        gameModeObject = GameMode.objects.get(mode=gameMode)
 
         try:
             rewardObject = Reward.objects.create(type=typeReward, count=reward, currency=currency)
-            gameModeObject = GameMode.objects.create(mode=gameMode)
+            # gameModeObject = GameMode.objects.create(mode=gameMode)
             linkObject = Link.objects.create(image=image, tournament=link)
             newObject = Dota.objects.create(title=title, status=status, startTime=startTime, gameMode=gameModeObject, participant=participant, reward=rewardObject, siteName=siteNameObject, links=linkObject, ip='127.0.0.1')
         except IntegrityError:

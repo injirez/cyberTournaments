@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Dota
-from .serializers import DotaListSerializer, CreateParticipantSerializer
+from .serializers import DotaListSerializer, DotaTestListSerializer
 from drf_yasg.utils import swagger_auto_schema
 from django.http import HttpResponse
 
@@ -44,7 +44,7 @@ class DotaListViewTest(APIView):
 
     def get(self, request):
         tournaments = Dota.objects.all()
-        serializer = DotaListSerializer(tournaments, many=True)
+        serializer = DotaTestListSerializer(tournaments, many=True)
 
         return Response(serializer.data)
 
