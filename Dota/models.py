@@ -5,10 +5,10 @@ class Dota(models.Model):
     title = models.CharField('Title of tournament', max_length=50, unique=True)
     status = models.CharField('Status of tournament', max_length=15)
     startTime = models.CharField('Date of tournament start', max_length=25)
-    gameMode = models.ForeignKey('GameMode', on_delete=models.CASCADE)
+    gameMode = models.ForeignKey('GameMode', on_delete=models.CASCADE, related_name='gameModes')
     participant = models.CharField('Number of participants', max_length=10)
     reward = models.ForeignKey('Reward', on_delete=models.CASCADE)
-    siteName = models.ForeignKey('SiteName', on_delete=models.CASCADE)
+    siteName = models.ForeignKey('SiteName', on_delete=models.CASCADE, related_name='siteNames')
     links = models.ForeignKey('Link', on_delete=models.CASCADE)
     ip = models.CharField('IP address', max_length=15)
 

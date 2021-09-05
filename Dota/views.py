@@ -3,16 +3,20 @@ from rest_framework.views import APIView
 from .models import Dota
 from .serializers import DotaListSerializer, CreateParticipantSerializer
 from drf_yasg.utils import swagger_auto_schema
+from django.http import HttpResponse
 
 
 class DotaListView(APIView):
 
     @swagger_auto_schema(operation_summary="This is all data from Dota db")
+
     def get(self, request):
-        tournaments = Dota.objects.all()
+        tournaments = Dota.objects.select_related('siteName', 'gameMode', 'links').all()
+        print(tournaments.query)
         serializer = DotaListSerializer(tournaments, many=True)
 
         return Response(serializer.data)
+
 
 class DotaListViewSiteName(APIView):
 
@@ -34,23 +38,33 @@ class DotaListViewStatus(APIView):
 
         return Response(serializer.data)
 
-class AddParticipant(APIView):
+class DotaListViewTest(APIView):
 
-    def get_client_ip(self, request):
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-        if x_forwarded_for:
-            ip = x_forwarded_for.split(',')[0]
-        else:
-            ip = request.META.get('REMOTE_ADDR')
-        return ip
+    @swagger_auto_schema(operation_summary="This is data for tests")
 
-    def post(self, request):
-        serializer = CreateParticipantSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(ip=self.get_client_ip(request))
-            return Response(status=201)
-        else:
-            return Response(status=400)
+    def get(self, request):
+        tournaments = Dota.objects.all()
+        serializer = DotaListSerializer(tournaments, many=True)
+
+        return Response(serializer.data)
+
+# class AddParticipant(APIView):
+#
+#     def get_client_ip(self, request):
+#         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+#         if x_forwarded_for:
+#             ip = x_forwarded_for.split(',')[0]
+#         else:
+#             ip = request.META.get('REMOTE_ADDR')
+#         return ip
+#
+#     def post(self, request):
+#         serializer = CreateParticipantSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save(ip=self.get_client_ip(request))
+#             return Response(status=201)
+#         else:
+#             return Response(status=400)
 
 
 
