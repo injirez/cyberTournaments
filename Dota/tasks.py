@@ -1,5 +1,6 @@
 from celery import shared_task
 from .models import Dota, Reward, GameMode, SiteName, Link
+from django.db import IntegrityError
 
 import time
 from selenium import webdriver
@@ -59,13 +60,16 @@ def addDota():
 
 
         print(title, status, startTime, gameMode, participant, reward, siteName[0], link, image, currency, typeReward)
+        siteNameObject = SiteName.objects.get(id=76)
 
-        rewardObject = Reward.objects.create(type=typeReward, count=reward, currency=currency)
-        gameModeObject = GameMode.objects.create(mode=gameMode)
-        siteNameObject = SiteName.objects.create(name=siteName[0])
-        linkObject = Link.objects.create(image=image, tournament=link)
-        newObject = Dota.objects.create(title=title, status=status, startTime=startTime, gameMode=gameModeObject, participant=participant, reward=rewardObject, siteName=siteNameObject, links=linkObject, ip='127.0.0.1')
-
+        try:
+            rewardObject = Reward.objects.create(type=typeReward, count=reward, currency=currency)
+            gameModeObject = GameMode.objects.create(mode=gameMode)
+            linkObject = Link.objects.create(image=image, tournament=link)
+            newObject = Dota.objects.create(title=title, status=status, startTime=startTime, gameMode=gameModeObject, participant=participant, reward=rewardObject, siteName=siteNameObject, links=linkObject, ip='127.0.0.1')
+        except IntegrityError:
+            print("Updating row...")
+            Dota.objects.filter(title=title).update(status=status, participant=participant)
     bot.quit()
     return True
 
