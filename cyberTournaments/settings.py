@@ -82,34 +82,34 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cyberTournaments.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cybertournaments',
-        'HOST': '192.168.0.8',
-        'USER': 'postgres',
-        'PASSWORD': '3470',
-        'PORT': '5432',
-        'OPTIONS': {
-            'client_encoding': 'win1251'
-        }
-    }
-}
-
-# FOR HEROKU DB
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'dfi22ifdsd9nvp',
-#         'HOST': 'ec2-54-227-246-76.compute-1.amazonaws.com',
-#         'USER': 'lohszmfdhejfep',
-#         'PASSWORD': 'ae65c2096165fc65d7549e870e651e9747acda544c23416986b0c165ebb730c9',
+#         'NAME': 'cybertournaments',
+#         'HOST': 'localhost',
+#         'USER': 'postgres',
+#         'PASSWORD': '3470',
 #         'PORT': '5432',
 #         'OPTIONS': {
 #             'client_encoding': 'win1251'
 #         }
 #     }
 # }
+
+# FOR HEROKU DB
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd442q44tdgkf5i',
+        'HOST': 'ec2-44-197-94-126.compute-1.amazonaws.com',
+        'USER': 'cfdloujnwbugxt',
+        'PASSWORD': '1427fa8dee9a5ef7cfa4a14c545500724e8b186cb589c9eab5ea4a98b3f72538',
+        'PORT': '5432',
+        'OPTIONS': {
+            'client_encoding': 'win1251'
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
