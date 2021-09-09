@@ -86,7 +86,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cybertournaments',
-        'HOST': 'localhost',
+        'HOST': '192.168.0.8',
         'USER': 'postgres',
         'PASSWORD': '3470',
         'PORT': '5432',
