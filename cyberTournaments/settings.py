@@ -48,11 +48,13 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_celery_beat',
     'django_celery_results',
+    'corsheaders',
     'Dota'
 
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -166,3 +168,5 @@ CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+CORS_ORIGIN_ALLOW_ALL = True
