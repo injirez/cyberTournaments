@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Dota(models.Model):
-    title = models.CharField('Title of tournament', max_length=50, unique=True)
+    title = models.CharField('Title of tournament', max_length=100, unique=True)
     status = models.CharField('Status of tournament', max_length=15)
     startTime = models.CharField('Date of tournament start', max_length=25)
     gameMode = models.ForeignKey('GameMode', on_delete=models.CASCADE, related_name='gameModes')
@@ -21,7 +21,7 @@ class GameMode(models.Model):
     mode = models.CharField('Mode of the game', max_length=10, unique=True)
 
 class SiteName(models.Model):
-    name = models.CharField('Name of the site', max_length=10, unique=True)
+    name = models.CharField('Name of the site', max_length=15, unique=True)
 
 class Link(models.Model):
     image = models.URLField('URL of image', max_length=200)

@@ -20,10 +20,14 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'addDotaWeplay': {
         'task': 'Dota.tasks.addDotaWeplay',
-        'schedule': 30.0
+        'schedule': 40.0
     },
-    # 'addDotaGamelix': {
-    #     'task': 'Dota.tasks.addDotaGamelix',
-    #     'schedule': 40.0
-    # }
+    'addDotaGamelix': {
+        'task': 'Dota.tasks.addDotaGamelix',
+        'schedule': 40.0
+    },
+    'addDotaCmode': {
+        'task': 'Dota.tasks.addDotaCmode',
+        'schedule': 40.0
+    }
 }

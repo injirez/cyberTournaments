@@ -12,7 +12,6 @@ class DotaListView(APIView):
 
     def get(self, request):
         tournaments = Dota.objects.select_related('siteName', 'gameMode', 'links').all()
-        print(tournaments.query)
         serializer = DotaListSerializer(tournaments, many=True)
 
         return Response(serializer.data)
